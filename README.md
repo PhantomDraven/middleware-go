@@ -28,7 +28,7 @@ Middleware-Go is a flexible and scalable Middleware API SaaS written in Go Lang.
    ```bash
    docker-compose up
    ```
-4. Access the API documentation at `http://localhost:8080/api`.
+4. Access the API documentation at `http://localhost:3000/swagger`.
 
 ## Documentation
 - [Home](https://github.com/PhantomDraven/middleware-go/wiki)

@@ -1,0 +1,1 @@
+swag init -g main.go --dir ./cmd,./controllers

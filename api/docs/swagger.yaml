@@ -1,0 +1,45 @@
+basePath: /
+host: localhost:3000
+info:
+  contact: {}
+  description: Swagger of middleware-go from https://github.com/PhantomDraven/middleware-go
+  license:
+    name: MIT
+    url: https://github.com/PhantomDraven/middleware-go/blob/main/LICENSE
+  title: Middleware-Go
+  version: 0.0.1-alpha
+paths:
+  /status:
+    get:
+      consumes:
+      - application/json
+      description: Get the server status
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get status
+      tags:
+      - Status
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a list of users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get users
+      tags:
+      - Users
+swagger: "2.0"

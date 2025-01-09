@@ -5,7 +5,13 @@ import (
 	"net/http"
 )
 
-// GetUsers example
+// @Summary Get users
+// @Description Retrieve a list of users
+// @Tags Users
+// @Accept json
+// @Produce json
+// @Success 200 {object} map[string]interface{} "Successful response"
+// @Router /users [get]
 func GetUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "List of users",

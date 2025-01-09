@@ -1,0 +1,67 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Swagger of middleware-go from https://github.com/PhantomDraven/middleware-go",
+        "title": "Middleware-Go",
+        "contact": {},
+        "license": {
+            "name": "MIT",
+            "url": "https://github.com/PhantomDraven/middleware-go/blob/main/LICENSE"
+        },
+        "version": "0.0.1-alpha"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+        "/status": {
+            "get": {
+                "description": "Get the server status",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Status"
+                ],
+                "summary": "Get status",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "description": "Retrieve a list of users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get users",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
