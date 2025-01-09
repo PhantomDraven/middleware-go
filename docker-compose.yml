@@ -1,0 +1,10 @@
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./api/.env
+    volumes:
+      - ./api:/app

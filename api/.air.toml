@@ -1,0 +1,13 @@
+root = "."
+
+[build]
+include_dir = ["."]
+exclude_dir = ["vendor", ".git"]
+
+include_ext = ["go"]
+exclude_ext = ["test.go"]
+
+cmd = "go run cmd/main.go"
+
+[log]
+time = true
