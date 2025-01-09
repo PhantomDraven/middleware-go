@@ -8,3 +8,22 @@ services:
       - ./api/.env
     volumes:
       - ./api:/app
+    depends_on:
+      - firebase-emulator
+    
+
+  firebase-emulator:
+    build:
+      context: ./firebase
+    working_dir: "/firebase"
+    volumes:
+      - .cache/firebase/emulators/:/app/.cache/firebase/emulators/ 
+      - ./firebase:/firebase
+      - firebase_data:/firebase/data
+    ports:
+      - "4000:4000" # Firebase Emulator UI
+      - "8080:8080" # Firestore 
+      - "9000:9000" # Database
+
+volumes:
+  firebase_data:
