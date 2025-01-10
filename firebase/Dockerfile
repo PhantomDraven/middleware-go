@@ -1,6 +1,6 @@
 FROM node:alpine
 
-RUN apk add openjdk11
+RUN apk add openjdk11 curl
 
 RUN npm install -g firebase-tools
 
