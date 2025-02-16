@@ -5,6 +5,9 @@ on: [push, pull_request] # Run on push and pull_request events
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./api
 
     steps:
     - name: Checkout code
@@ -17,8 +20,6 @@ jobs:
 
     - name: Install dependencies
       run: go mod tidy
-      working-directory: ./api
 
     - name: Run tests
       run: go test ./... -v
-      working-directory: ./api
