@@ -27,9 +27,9 @@ paths:
       - application/json
       description: Add a new namespace to the database
       parameters:
-      - description: Namespace
+      - description: Name
         in: body
-        name: namespace
+        name: name
         required: true
         schema:
           $ref: '#/definitions/models.Namespace'

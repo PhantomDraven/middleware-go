@@ -17,7 +17,7 @@ import (
 // @Tags Namespace
 // @Accept json
 // @Produce json
-// @Param namespace body models.Namespace true "Namespace"
+// @Param name body models.Namespace true "Name"
 // @Success 200 {object} models.Namespace
 // @Failure 400 {object} map[string]string
 // @Failure 500 {object} map[string]string
