@@ -30,6 +30,12 @@ func AddNamespace(c *gin.Context) {
 		return
 	}
 
+	if namespace.Name == "" {
+		logrus.Error("Name attribute is required")
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Name attribute is required"})
+		return
+	}
+
 	id, err := generateID()
 	if err != nil {
 		logrus.WithError(err).Error("Failed to generate unique ID")
@@ -59,6 +65,12 @@ func generateID() (string, error) {
 	return ref.Key, nil
 }
 
+func checkIfNamespaceExists(id string) bool {
+	var namespace models.Namespace
+	database.FirestoreDB.NewRef("namespaces/"+id).Get(context.Background(), &namespace)
+	return namespace.ID != ""
+}
+
 // @Summary Remove a namespace
 // @Description Remove a namespace from the database
 // @Tags Namespace
@@ -70,6 +82,20 @@ func generateID() (string, error) {
 // @Router /namespaces/{id} [delete]
 func RemoveNamespace(c *gin.Context) {
 	id := c.Param("id")
+
+	if id == "" {
+		logrus.Error("Namespace ID is required")
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Namespace ID is required"})
+		return
+	}
+
+	exists := checkIfNamespaceExists(id)
+	if !exists {
+		logrus.Error("Namespace does not exist")
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Namespace does not exist"})
+		return
+	}
+
 	err := database.FirestoreDB.NewRef("namespaces/" + id).Delete(context.Background())
 	if err != nil {
 		logrus.WithError(err).Error("Failed to remove namespace from database")
@@ -94,6 +120,13 @@ func RemoveNamespace(c *gin.Context) {
 // @Router /namespaces/{id} [put]
 func EditNamespace(c *gin.Context) {
 	id := c.Param("id")
+	exists := checkIfNamespaceExists(id)
+	if !exists {
+		logrus.Error("Namespace does not exist")
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Namespace does not exist"})
+		return
+	}
+
 	var namespace models.Namespace
 	if err := c.ShouldBindJSON(&namespace); err != nil {
 		logrus.WithError(err).Error("Failed to bind JSON")
