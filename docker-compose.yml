@@ -9,11 +9,10 @@ services:
     volumes:
       - ./api:/app
     depends_on:
-      firebase-emulator:
+      emulator:
         condition: service_healthy
-    
 
-  firebase-emulator:
+  emulator:
     build:
       context: ./firebase
     working_dir: "/firebase"
