@@ -34,8 +34,8 @@ const docTemplate = `{
                 "summary": "Add a new namespace",
                 "parameters": [
                     {
-                        "description": "Namespace",
-                        "name": "namespace",
+                        "description": "Name",
+                        "name": "name",
                         "in": "body",
                         "required": true,
                         "schema": {
