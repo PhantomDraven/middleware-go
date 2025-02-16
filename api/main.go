@@ -58,6 +58,11 @@ func main() {
 	r.GET("/status", controllers.GetStatus)
 	r.GET("/users", controllers.GetUsers)
 
+	// Register routes for namespace controller
+	r.POST("/namespaces", controllers.AddNamespace)
+	r.DELETE("/namespaces/:id", controllers.RemoveNamespace)
+	r.PUT("/namespaces/:id", controllers.EditNamespace)
+
 	// Start the server on port 8080
 	fmt.Printf("Starting server on port %s...\n", port)
 	r.Run(":" + port)
