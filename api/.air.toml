@@ -7,7 +7,7 @@ exclude_dir = ["vendor", ".git"]
 include_ext = ["go"]
 exclude_ext = ["test.go"]
 
-cmd = "go run cmd/main.go"
+cmd = "go run main.go"
 
 [log]
 time = true
