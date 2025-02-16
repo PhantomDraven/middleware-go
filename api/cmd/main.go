@@ -1,32 +1,46 @@
 package main
 
 import (
-	"os"
 	"fmt"
+	"log"
+	"os"
 
-	"net/http"
-	"github.com/gin-gonic/gin"
 	"middleware-go/api/controllers" // Import controllers
+	"middleware-go/api/database"
+	"net/http"
+
+	"github.com/joho/godotenv"
+
+	"github.com/gin-gonic/gin"
 
 	_ "middleware-go/api/docs"
-	"github.com/swaggo/files"
-	"github.com/swaggo/gin-swagger"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 // @title Middleware-Go
 // @version 0.0.1-alpha
-// @description Swagger of middleware-go from https://github.com/PhantomDraven/middleware-go 
+// @description Swagger of middleware-go from https://github.com/PhantomDraven/middleware-go
 // @license.name MIT
 // @license.url https://github.com/PhantomDraven/middleware-go/blob/main/LICENSE
 // @host localhost:3000
 // @BasePath /
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error while loading .env: %v", err)
+	}
+
 	port := os.Getenv("API_PORT")
-	fmt.Printf("Port setted as %s \n", port)
 	if port == "" {
 		port = "3000" // Default port
-		fmt.Printf("Using default port \n")
 	}
+
+	fmt.Printf("Port setted as %s \n", port)
+
+	// Initialize Firebase
+	database.InitializeFirebase()
 
 	// Create a new router instance
 	r := gin.Default()
