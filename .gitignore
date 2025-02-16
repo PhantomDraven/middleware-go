@@ -26,3 +26,6 @@ go.work.sum
 
 /firebase/*-debug.log
 /api/tmp
+
+# service account for firebase
+/firebase/serviceAccountKey.json
