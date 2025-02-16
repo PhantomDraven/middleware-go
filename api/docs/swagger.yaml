@@ -1,4 +1,16 @@
 basePath: /
+definitions:
+  models.Namespace:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
 host: localhost:3000
 info:
   contact: {}
@@ -9,6 +21,107 @@ info:
   title: Middleware-Go
   version: 0.0.1-alpha
 paths:
+  /namespaces:
+    post:
+      consumes:
+      - application/json
+      description: Add a new namespace to the database
+      parameters:
+      - description: Namespace
+        in: body
+        name: namespace
+        required: true
+        schema:
+          $ref: '#/definitions/models.Namespace'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Namespace'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Add a new namespace
+      tags:
+      - Namespace
+  /namespaces/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove a namespace from the database
+      parameters:
+      - description: Namespace ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Remove a namespace
+      tags:
+      - Namespace
+    put:
+      consumes:
+      - application/json
+      description: Edit an existing namespace in the database
+      parameters:
+      - description: Namespace ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Namespace
+        in: body
+        name: namespace
+        required: true
+        schema:
+          $ref: '#/definitions/models.Namespace'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Namespace'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Edit a namespace
+      tags:
+      - Namespace
   /status:
     get:
       consumes:
